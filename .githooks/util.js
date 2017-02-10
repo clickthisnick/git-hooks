@@ -29,29 +29,16 @@ module.exports = {
     },
 
     isBranchNamePrefixed: function(branchName) {
-        const isPrefixed = _(constants.BRANCH_PREFIXES)
+        return !_.isNil(this.getBranchNamePrefix(branchName));
+    },
+
+    getBranchNamePrefix: function(branchName) {
+        const prefix = _(constants.BRANCH_PREFIXES)
             .find((prefix) => {
                 return _.startsWith(branchName, prefix)
             })
 
-        console.log('trueee');
-        console.log(isPrefixed);
-        return !_.isNil(isPrefixed);
-    },
-
-    getBranchNamePrefix: function(branchName) {
-        let branchPrefix;
-
-        // If branch is not prefixed return null
-        if (!this.isBranchNamePrefixed(branchName)) {
-            return null;
-        }
-
-        branchPrefix = _.find(constants.BRANCH_PREFIXES, (prefix) => {
-            return _.startsWith(branchName, prefix)
-        })
-
-        return branchPrefix;
+        return prefix;
     },
 
     getCommitMessage: function() {
