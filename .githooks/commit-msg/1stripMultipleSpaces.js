@@ -9,11 +9,10 @@ const
 
 return util.getCommitMessage()
   .then((commitMessage) => {
-      // Remove multiple spaces
-      commitMessage = commitMessage.replace(/  +/g, ' ');
-
-      // Trim spaces before and after commit message
-      commitMessage = _.trim(commitMessage);
+      // Remove multiple spaces and spaces surrounding message
+      const sanitizedCommitMsg = _(commitMsg)
+          .replace(/  +/g, ' ')
+          .trim();
 
       fs.writeFile('.git/COMMIT_EDITMSG', `${commitMessage}`, function (err,data) {
           if (err) {

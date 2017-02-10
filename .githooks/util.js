@@ -1,5 +1,6 @@
 const exec = require('child_process').exec,
     fs = require('fs'),
+    constants = require('./const.js'),
     _ = require('lodash');
 
 module.exports = {
@@ -25,6 +26,31 @@ module.exports = {
 
               return branchName;
           })
+    },
+
+    isBranchNamePrefixed: function(branchName) {
+        const isPrefixed = _(constants.BRANCH_PREFIXES)
+            .find((prefix) => {
+                _.startsWith(branchName, prefix)
+            })
+            .isNil()
+
+        return isPrefixed;
+    },
+
+    getBranchNamePrefix: function(branchName) {
+        let branchPrefix;
+
+        // If branch is not prefixed return null
+        if (!isBranchNamePrefixed(branchName)) {
+            return null;
+        }
+
+        branchPrefix = _.find(constants.BRANCH_PREFIXES, (prefix) => {
+            return _.startsWith(branchName, prefix)
+        })
+
+        return branchPrefix;
     },
 
     getCommitMessage: function() {
