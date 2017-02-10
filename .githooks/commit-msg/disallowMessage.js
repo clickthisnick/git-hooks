@@ -21,7 +21,7 @@ return new Promise((resolve) => {
 .then((commitMessage) => {
     const wordCount = commitMessage.split(' ').length;
     let errorString = [];
-
+    console.log(wordCount);
     if (wordCount < minimumWordCount) {
         errorString.push(`Commit Message: "${commitMessage}" Not Descriptive. Please use at least ${minimumWordCount} words`);
     }
