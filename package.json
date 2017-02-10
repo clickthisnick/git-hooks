@@ -1,0 +1,22 @@
+{
+  "name": "githooks",
+  "version": "1.0.0",
+  "description": "Githooks for projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clickthisnick/githooks.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clickthisnick/githooks/issues"
+  },
+  "homepage": "https://github.com/clickthisnick/githooks#readme",
+  "dependencies": {
+    "git-hooks": "^1.1.8"
+  }
+}
