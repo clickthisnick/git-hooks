@@ -1,8 +1,13 @@
 #!/usr/bin/env node
 
-const exec = require('child_process').exec,
+const
+
+    // Libraries
+    exec = require('child_process').exec,
     _ = require('lodash'),
-    fs = require('fs');
+    fs = require('fs'),
+
+    minimumWordCount = 3;
 
 // Checking if any packages are missing
 return new Promise((resolve) => {
@@ -14,11 +19,17 @@ return new Promise((resolve) => {
 })
 // If packages are missing then run npm install
 .then((commitMessage) => {
-    console.log(_.includes(['foo'], commitMessage));
-    if (_.includes(['foo'], commitMessage)) {
-        exec('exit 1', (error, stdout) => {
-            console.log(error);
-            console.log(stdout); // eslint-disable-line no-console
-        });
+    const wordCount = commitMessage.split(' ').length;
+    let errorString = [];
+
+    if (wordCount < minimumWordCount) {
+        errorString.push(`Commit Message: "${commitMessage}" Not Descriptive. Please use at least ${minimumWordCount} words`);
+    }
+
+    if (errorString !== '') {
+        // http://misc.flogisoft.com/bash/tip_colors_and_formatting
+        console.log('\x1b[103m', _.join(errorString, '\n') ,'\x1b[0m');
+        console.log('\x1b[31m', 'Aborting Commit.' ,'\x1b[0m');
+        process.exit(1);
     }
 });

@@ -1,3 +1,4 @@
+#!/bin/sh
 ASPELL=$(which aspell)
 if [ $? -ne 0 ]; then
     echo "Aspell not installed - unable to check spelling" >&2
