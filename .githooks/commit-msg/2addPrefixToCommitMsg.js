@@ -15,8 +15,8 @@ return util.getBranchName()
   .then(() => util.getCommitMessage())
   .then((commitMsg) => {
       // If commitMsg doesn't start with branch prefix, add it
-      const isPrefixed = util.isBranchNamePrefixed(branchName),
-        isCommitMsgPrefixed = util.isCommitMsgPrefixed(commitMsg),
+      const isPrefixed = util.isBranchNamePrefixed(_.lowerCase(branchName)),
+        isCommitMsgPrefixed = util.isCommitMsgPrefixed(_.lowerCase(commitMsg)),
         branchPrefix = util.getPrefix(branchName);
 
       // If branch is not prefixed then don't do anything because we don't know what prefix it should be
@@ -25,7 +25,7 @@ return util.getBranchName()
           return;
       }
 
-      fs.writeFile('.git/COMMIT_EDITMSG', `${branchPrefix} ${commitMsg}`, function (err,data) {
+      fs.writeFile('.git/COMMIT_EDITMSG', `${_.upperFirst(branchPrefix)} - ${commitMsg}`, function (err,data) {
           if (err) {
               return console.log(err);
           }
