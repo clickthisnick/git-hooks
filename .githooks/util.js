@@ -1,4 +1,5 @@
 const exec = require('child_process').exec,
+    fs = require('fs'),
     _ = require('lodash');
 
 module.exports = {
@@ -17,8 +18,21 @@ module.exports = {
     getBranchName: function() {
         return this.bash('git symbolic-ref -q HEAD')
           .then((refHead) => {
-              refSplit = refHead.split('/');
-              return _.last(refSplit);
+              const refSplit = refHead.split('/'),
+                    branchNameWithNewLine = _.last(refSplit),
+                    branchName = _.trim(branchNameWithNewLine, ['\n']);
+
+              return branchName;
           })
+    },
+
+    getCommitMessage: function() {
+      return new Promise((resolve) => {
+          fs.readFile('.git/COMMIT_EDITMSG', 'utf8', function(err, contents) {
+              const commitMessage = _.trim(contents, ['\n']);
+
+              resolve(commitMessage);
+          });
+      })
     }
 }
