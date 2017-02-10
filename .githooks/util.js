@@ -18,9 +18,10 @@ module.exports = {
     getBranchName: function() {
         return this.bash('git symbolic-ref -q HEAD')
           .then((refHead) => {
-              const refSplit = refHead.split('/'),
-                    branchNameWithNewLine = _.last(refSplit),
-                    branchName = _.trim(branchNameWithNewLine, ['\n']);
+              branchName = _(refHead)
+                .split('/')
+                .last()
+                .trim(['\n'])
 
               return branchName;
           })
