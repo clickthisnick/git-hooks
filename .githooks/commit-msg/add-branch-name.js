@@ -15,7 +15,6 @@
 // })
 // // If packages are missing then run npm install
 // .then((commitMessage) => {
-//
 //     fs.writeFile('.git/COMMIT_EDITMSG', `abc - ${commitMessage}`, function (err,data) {
 //         if (err) {
 //             return console.log(err);
