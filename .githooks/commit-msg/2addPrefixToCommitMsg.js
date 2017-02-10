@@ -15,14 +15,17 @@ return util.getBranchName()
   .then(() => util.getCommitMessage())
   .then((commitMsg) => {
       // If commitMsg doesn't start with branch prefix, add it
-      const isPrefixed = util.isBranchNamePrefixed(branchName);
+      const isPrefixed = util.isBranchNamePrefixed(branchName),
+        isCommitMsgPrefixed = util.isCommitMsgPrefixed(commitMsg),
+        branchPrefix = util.getPrefix(branchName);
 
       // If branch is not prefixed then don't do anything because we don't know what prefix it should be
-      if (!isPrefixed) {
-          return
+      // // If commit msg is already prefixed we don't need to add it again
+      if (!isPrefixed || isCommitMsgPrefixed) {
+          return;
       }
 
-      fs.writeFile('.git/COMMIT_EDITMSG', `${sanitizedCommitMsg}`, function (err,data) {
+      fs.writeFile('.git/COMMIT_EDITMSG', `${branchPrefix} ${commitMsg}`, function (err,data) {
           if (err) {
               return console.log(err);
           }

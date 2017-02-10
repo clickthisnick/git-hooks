@@ -29,13 +29,17 @@ module.exports = {
     },
 
     isBranchNamePrefixed: function(branchName) {
-        return !_.isNil(this.getBranchNamePrefix(branchName));
+        return !_.isNil(this.getPrefix(branchName));
     },
 
-    getBranchNamePrefix: function(branchName) {
+    isCommitMsgPrefixed: function(commitMessage) {
+        return !_.isNil(this.getPrefix(commitMessage));
+    },
+
+    getPrefix: function(string) {
         const prefix = _(constants.BRANCH_PREFIXES)
             .find((prefix) => {
-                return _.startsWith(branchName, prefix)
+                return _.startsWith(string, prefix)
             })
 
         return prefix;
