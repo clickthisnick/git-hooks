@@ -15,7 +15,7 @@ return util.getBranchName()
   .then(() => util.getCommitMessage())
   .then((commitMsg) => {
       // If commitMsg doesn't start with branch prefix, add it
-      const isPrefixed = isBranchNamePrefixed(branchName);
+      const isPrefixed = util.isBranchNamePrefixed(branchName);
 
       // If branch is not prefixed then don't do anything because we don't know what prefix it should be
       if (!isPrefixed) {

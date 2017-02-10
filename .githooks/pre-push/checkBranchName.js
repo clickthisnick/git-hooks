@@ -7,7 +7,7 @@ const util = require('./../util.js'),
 
 return util.getBranchName()
   .then((branchName) => {
-      const isPrefixed = isBranchNamePrefixed(branchName);
+      const isPrefixed = util.isBranchNamePrefixed(branchName);
 
       // Don't give error for branches we don't want to be warned on
       if (_.includes(ignoreBranches, branchName)) {

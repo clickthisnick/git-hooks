@@ -42,7 +42,7 @@ module.exports = {
         let branchPrefix;
 
         // If branch is not prefixed return null
-        if (!isBranchNamePrefixed(branchName)) {
+        if (!this.isBranchNamePrefixed(branchName)) {
             return null;
         }
 
