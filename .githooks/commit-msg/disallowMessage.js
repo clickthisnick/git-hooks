@@ -1,13 +1,18 @@
 #!/usr/bin/env node
 
-const exec = require('child_process').exec;
+const exec = require('child_process').exec,
+    fs = require('fs');
 
 // Checking if any packages are missing
-return Promise.resolve()
+return new Promise((resolve) => {
+    for (const [idx, npmPackage] of allNpmPackages.entries()) {
+        fs.readFile('.git/COMMIT_EDITMSG', 'utf8', function(err, contents) {
+            console.log(contents);
+            resolve(contents);
+        });
+    }
+})
 // If packages are missing then run npm install
-.then(() => {
-    exec('cat "$1"', (error, stdout) => {
-        console.log(error);
-        console.log(stdout); // eslint-disable-line no-console
-    });
+.then((commitMessage) => {
+    console.log(commitMessage);
 });
