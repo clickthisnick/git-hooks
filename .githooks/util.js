@@ -31,7 +31,7 @@ module.exports = {
     isBranchNamePrefixed: function(branchName) {
         const isPrefixed = _(constants.BRANCH_PREFIXES)
             .find((prefix) => {
-                _.startsWith(branchName, prefix)
+                return _.startsWith(branchName, prefix)
             })
 
         console.log('trueee');
