@@ -8,13 +8,13 @@ const
     fs = require('fs');
 
 return util.getCommitMessage()
-  .then((commitMessage) => {
+  .then((commitMsg) => {
       // Remove multiple spaces and spaces surrounding message
       const sanitizedCommitMsg = _(commitMsg)
           .replace(/  +/g, ' ')
           .trim();
 
-      fs.writeFile('.git/COMMIT_EDITMSG', `${commitMessage}`, function (err,data) {
+      fs.writeFile('.git/COMMIT_EDITMSG', `${sanitizedCommitMsg}`, function (err,data) {
           if (err) {
               return console.log(err);
           }

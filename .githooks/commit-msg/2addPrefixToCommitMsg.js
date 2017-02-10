@@ -6,10 +6,9 @@ const
     util = require('./../util.js'),
     _ = require('lodash'),
     constants = require('./../const.js'),
-    fs = require('fs'),
+    fs = require('fs');
 
-    // Constant Variables
-    branchName;
+  let branchName;
 
 return util.getBranchName()
   .then((res) => branchName = res)
