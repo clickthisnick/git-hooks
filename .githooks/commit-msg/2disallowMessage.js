@@ -3,7 +3,6 @@
 const
 
     // Libraries
-    exec = require('child_process').exec,
     _ = require('lodash'),
     fs = require('fs'),
 
