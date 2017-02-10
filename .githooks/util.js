@@ -1,4 +1,5 @@
 const exec = require('child_process').exec,
+    fs = require('fs'),
     _ = require('lodash');
 
 module.exports = {

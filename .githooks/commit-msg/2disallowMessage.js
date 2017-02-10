@@ -5,7 +5,6 @@ const
     // Libraries
     util = require('./../util.js'),
     _ = require('lodash'),
-    fs = require('fs'),
 
     minimumWordCount = 3;
 
