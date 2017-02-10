@@ -28,7 +28,9 @@ return util.getBranchName()
           _.forEach(requiredBranchPrefixs, (prefix) => {
                 console.log(`\tgit branch -m ${branchName} ${prefix}-${branchName}`)
           })
+          console.log('\t\x1b[31m', 'Aborting Push.' ,'\x1b[0m');
           console.log('\n\n');
+          process.exit(1);
 
       }
   });
