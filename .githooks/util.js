@@ -23,5 +23,15 @@ module.exports = {
 
               return branchName;
           })
+    },
+
+    getCommitMessage: function() {
+      return new Promise((resolve) => {
+          fs.readFile('.git/COMMIT_EDITMSG', 'utf8', function(err, contents) {
+              const commitMessage = _.trim(contents, ['\n']);
+
+              resolve(commitMessage);
+          });
+      })
     }
 }

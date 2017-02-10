@@ -3,34 +3,27 @@
 const
 
     // Libraries
+    util = require('./../util.js'),
     _ = require('lodash'),
     fs = require('fs'),
 
     minimumWordCount = 3;
 
-// Checking if any packages are missing
-return new Promise((resolve) => {
-    fs.readFile('.git/COMMIT_EDITMSG', 'utf8', function(err, contents) {
-        const commitMessage = _.trim(contents, ['\n']);
+return util.getCommitMessage()
+    .then((commitMessage) => {
+        const wordCount = commitMessage.split(' ').length;
+        let errorString = [];
 
-        resolve(commitMessage);
+        if (wordCount < minimumWordCount) {
+            errorString.push(`Commit Message: "${commitMessage}" Not Descriptive. Please use at least ${minimumWordCount} words`);
+        }
+
+        if (errorString.length > 0) {
+            // http://misc.flogisoft.com/bash/tip_colors_and_formatting
+            console.log('\n\n');
+            console.log('\t\x1b[103m', _.join(errorString, '\n') ,'\x1b[0m');
+            console.log('\t\x1b[31m', 'Aborting Commit.' ,'\x1b[0m');
+            console.log('\n\n');
+            process.exit(1);
+        }
     });
-})
-// If packages are missing then run npm install
-.then((commitMessage) => {
-    const wordCount = commitMessage.split(' ').length;
-    let errorString = [];
-
-    if (wordCount < minimumWordCount) {
-        errorString.push(`Commit Message: "${commitMessage}" Not Descriptive. Please use at least ${minimumWordCount} words`);
-    }
-
-    if (errorString.length > 0) {
-        // http://misc.flogisoft.com/bash/tip_colors_and_formatting
-        console.log('\n\n');
-        console.log('\t\x1b[103m', _.join(errorString, '\n') ,'\x1b[0m');
-        console.log('\t\x1b[31m', 'Aborting Commit.' ,'\x1b[0m');
-        console.log('\n\n');
-        process.exit(1);
-    }
-});
