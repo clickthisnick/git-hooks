@@ -1,6 +1,2 @@
-*
-!.gitignore
-!.githooks
-!LICENSE
-!README.md
-!package.json
+node_modules
+.DS_Store
