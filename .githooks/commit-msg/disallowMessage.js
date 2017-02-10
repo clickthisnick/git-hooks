@@ -12,6 +12,7 @@ return new Promise((resolve) => {
 })
 // If packages are missing then run npm install
 .then((commitMessage) => {
+    console.log(_.trim(commitMessage, ['\n']));
     console.log('here');
     console.log(commitMessage);
     console.log(_.includes(['foo'], commitMessage));
