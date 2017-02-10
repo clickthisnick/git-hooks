@@ -1,6 +1,4 @@
 #!/bin/sh
 
-echo "$1";
-echo "${1}";
-echo list < "$1"
+cat "$1"
 echo 'savage';
