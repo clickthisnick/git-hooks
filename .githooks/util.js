@@ -33,9 +33,10 @@ module.exports = {
             .find((prefix) => {
                 _.startsWith(branchName, prefix)
             })
-            .isNil()
 
-        return isPrefixed;
+        console.log('trueee');
+        console.log(isPrefixed);
+        return !_.isNil(isPrefixed);
     },
 
     getBranchNamePrefix: function(branchName) {
