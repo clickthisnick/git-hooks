@@ -5,7 +5,7 @@ module.exports = {
         return new Promise((resolve) => {
             exec('npm install', (error, stdout) => {
                 if (error) {
-                    console.log('error');
+                    console.log(`Error: ${error}`);
                     return '';
                 }
                 return stdout;
