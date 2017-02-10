@@ -17,6 +17,7 @@ return new Promise((resolve) => {
     console.log(_.includes(['foo'], commitMessage));
     if (_.includes(['foo'], commitMessage)) {
         exec('exit 1', (error, stdout) => {
+            console.log(error);
             console.log(stdout); // eslint-disable-line no-console
         });
     }
