@@ -5,12 +5,10 @@ const exec = require('child_process').exec,
 
 // Checking if any packages are missing
 return new Promise((resolve) => {
-    for (const [idx, npmPackage] of allNpmPackages.entries()) {
-        fs.readFile('.git/COMMIT_EDITMSG', 'utf8', function(err, contents) {
-            console.log(contents);
-            resolve(contents);
-        });
-    }
+    fs.readFile('.git/COMMIT_EDITMSG', 'utf8', function(err, contents) {
+        console.log(contents);
+        resolve(contents);
+    });
 })
 // If packages are missing then run npm install
 .then((commitMessage) => {
