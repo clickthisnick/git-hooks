@@ -7,6 +7,7 @@ return Promise.resolve()
 // If packages are missing then run npm install
 .then(() => {
     exec('cat "$1"', (error, stdout) => {
+        console.log(error);
         console.log(stdout); // eslint-disable-line no-console
     });
 });
