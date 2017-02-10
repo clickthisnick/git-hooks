@@ -26,7 +26,7 @@ return new Promise((resolve) => {
         errorString.push(`Commit Message: "${commitMessage}" Not Descriptive. Please use at least ${minimumWordCount} words`);
     }
 
-    if (errorString !== '') {
+    if (errorString.length > 0) {
         // http://misc.flogisoft.com/bash/tip_colors_and_formatting
         console.log('\x1b[103m', _.join(errorString, '\n') ,'\x1b[0m');
         console.log('\x1b[31m', 'Aborting Commit.' ,'\x1b[0m');
