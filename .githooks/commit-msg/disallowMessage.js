@@ -6,7 +6,7 @@ const exec = require('child_process').exec;
 return Promise.resolve()
 // If packages are missing then run npm install
 .then(() => {
-    exec('echo$(cat "$1")', (error, stdout) => {
+    exec('cat "$1"', (error, stdout) => {
         console.log(stdout); // eslint-disable-line no-console
     });
 });
