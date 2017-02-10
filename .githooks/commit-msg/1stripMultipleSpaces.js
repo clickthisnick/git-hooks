@@ -7,13 +7,12 @@ const
     _ = require('lodash'),
     fs = require('fs');
 
-// Checking if any packages are missing
+// Getting the commit message
 return new Promise((resolve) => {
     fs.readFile('.git/COMMIT_EDITMSG', 'utf8', function(err, commitMessage) {
         resolve(commitMessage);
     });
 })
-// If packages are missing then run npm install
 .then((commitMessage) => {
     // Remove multiple spaces
     commitMessage = commitMessage.replace(/  +/g, ' ');
