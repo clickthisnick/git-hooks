@@ -19,7 +19,7 @@ return util.getCommitMessage()
             console.log('\n');
         } else {
             console.log(aspell.output)
-            return util.bash(`${aspell.output} check .git/COMMIT_EDITMSG | sort -u`)
+            return util.bash(`${aspell.output} list < .git/COMMIT_EDITMSG | sort -u`)
                 .then((misspelledWords) => {
                     console.log(misspelledWords);
                 })
