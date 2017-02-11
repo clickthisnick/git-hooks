@@ -12,7 +12,7 @@ else
     ignored_words=()
 
     tps=" ${misspelled_words[*]} "                     # stringify the array
-
+    echo tps
     for item in ${ignored_words[@]}; do
       tps=${tps/ ${item} / }                # replace item
     done
