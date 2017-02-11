@@ -29,7 +29,6 @@ return util.getCommitMessage()
                         misspelledWords = _(res.output)
                             .split('\n')
                             .map((word) => _.lowerCase(word))
-                            // Remove words in the ignoredWords list
                             .remove((word) => !_.includes(ignoredWordList, word))
                             .value();
 
