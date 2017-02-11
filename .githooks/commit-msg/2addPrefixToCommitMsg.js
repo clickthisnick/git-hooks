@@ -5,7 +5,7 @@ const util = require('./../util.js'),
     constants = require('./../const.js'),
     fs = require('fs');
 
-let branchName;
+ let branchName;
 
 return util.getBranchName()
   .then((res) => branchName = res)
