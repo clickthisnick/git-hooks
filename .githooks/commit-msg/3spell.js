@@ -10,8 +10,6 @@ let commitMsg;
 
 return util.getCommitMessage()
     .then((res) => commitMsg = res)
-    .then(() => util.bash('pwd'))
-    .then((resp) => console.log(resp))
     .then(() => util.bash('which aspell'))
     .then((aspell) => {
         if (!_.isNil(aspell.error)) {
@@ -20,10 +18,18 @@ return util.getCommitMessage()
             console.log('\tTo install use command: brew install aspell');
             console.log('\n');
         } else {
-            console.log(aspell.output)
             return util.bash(`${aspell.output} list < .git/COMMIT_EDITMSG | sort -u`)
-                .then((misspelledWords) => {
+                .then((res) => {
+                    const ignoredWords = []
+                    let misspelledWords = _(res)
+                        .split('\n')
+                        .map()
+                        .toLowerCase()
+
                     console.log(misspelledWords);
+                    // var fruits = ['Apple', 'Banana', 'Orange', 'Celery'];
+                    // Remove these w
+                    //_.pull(fruits, 'Apple', 'Banana', 'Orange'); // ['Celery']
                 })
         }
     })
