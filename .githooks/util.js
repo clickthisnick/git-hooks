@@ -48,7 +48,7 @@ module.exports = {
 
     writeCommitMessage: function(message) {
       return new Promise((resolve) => {
-          fs.writeFile('.git/COMMIT_EDITMSG', message, function (err,data) {
+          fs.writeFile(constants.COMMIT_MSG_PATH, message, function (err,data) {
               if (err) {
                   return console.log(err);
               }
@@ -59,7 +59,7 @@ module.exports = {
 
     getCommitMessage: function() {
       return new Promise((resolve) => {
-          fs.readFile('.git/COMMIT_EDITMSG', 'utf8', function(err, contents) {
+          fs.readFile(constants.COMMIT_MSG_PATH, 'utf8', function(err, contents) {
              const commitMessage = _(contents)
                 .split('\n')
                 .head()

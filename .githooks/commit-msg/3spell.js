@@ -17,7 +17,7 @@ return util.getCommitMessage()
             console.log('brew install aspell');
             console.log('\n');
         } else {
-            return util.bash(`${aspell.output} list < .git/COMMIT_EDITMSG | sort -u`)
+            return util.bash(`${aspell.output} list < ${constants.COMMIT_MSG_PATH} | sort -u`)
                 .then((res) => {
                     // The aspell command will return '' if there are no misspellings
                     if (res.output === '') {
