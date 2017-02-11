@@ -18,9 +18,9 @@ return util.getCommitMessage()
         } else {
             return util.bash(`${aspell.output} list < .git/COMMIT_EDITMSG | sort -u`)
                 .then((res) => {
-                    // res will be [''] if there are no misspellings
-                    console.log(_.filter((res.output, (word) => word === '')))
-
+                    if (res === '') {
+                        console.log('farts');
+                    }
 
                     let ignoredWords = ['bugfix', 'githook'],
                         // Adding s to the words and also ignoring them
