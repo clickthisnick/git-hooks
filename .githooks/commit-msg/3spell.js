@@ -28,10 +28,11 @@ return util.getCommitMessage()
                         .remove((word) => _.indexOf(ignoredWords, word) === -1)
                         .value()
 
-                    console.log(misspelledWords);
-                    // var fruits = ['Apple', 'Banana', 'Orange', 'Celery'];
-                    // Remove these w
-                    _.pull(fruits, 'Apple', 'Banana', 'Orange'); // ['Celery']
+                    console.log('\n');
+                    console.log('\t\x1b[103m', 'The following words are possibly misspelled' ,'\x1b[0m');
+                    console.log('\t\x1b[103m', 'To fix use command: git commit --amend:' ,'\x1b[0m');
+                    _.forEach(misspelledWords, (word) => console.log(`\t${word}`))
+                    console.log('\n');
                 })
         }
     })
