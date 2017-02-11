@@ -28,6 +28,10 @@ return util.getCommitMessage()
                         .remove((word) => _.indexOf(ignoredWords, word) === -1)
                         .value()
 
+                    if (misspelledWords.length === 0) {
+                        return;
+                    }
+
                     console.log('\n');
                     console.log('\t\x1b[103m', 'The following words are possibly misspelled' ,'\x1b[0m');
                     _.forEach(misspelledWords, (word) => console.log(`\t${word}`))
