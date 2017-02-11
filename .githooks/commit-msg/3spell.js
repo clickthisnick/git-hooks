@@ -30,7 +30,7 @@ return util.getCommitMessage()
 
                     console.log('\n');
                     console.log('\t\x1b[103m', 'The following words are possibly misspelled' ,'\x1b[0m');
-                    console.log('\t\x1b[103m', 'To fix use command: git commit --amend:' ,'\x1b[0m');
+                    console.log('\t\x1b[103m', 'To fix use command: git commit --amend' ,'\x1b[0m');
                     _.forEach(misspelledWords, (word) => console.log(`\t${word}`))
                     console.log('\n');
                 })
