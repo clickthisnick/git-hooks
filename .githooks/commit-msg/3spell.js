@@ -29,7 +29,7 @@ return util.getCommitMessage()
                         .remove((word) => {
                             console.log(ignoredWordList);
                             console.log(word);
-                            console.log(_.includes(ignoredWordList, word))
+                            console.log(!_.includes(ignoredWordList, word))
                             console.log(_.indexOf(ignoredWordList, word) === -1)
                         })
                         .value()
