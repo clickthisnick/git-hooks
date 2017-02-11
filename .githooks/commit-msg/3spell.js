@@ -17,11 +17,15 @@ return util.getCommitMessage()
         } else {
             return util.bash(`${aspell.output} list < .git/COMMIT_EDITMSG | sort -u`)
                 .then((res) => {
-                    const ignoredWords = ['bugfix', 'githooks'];
+                    let ignoredWords = ['bugfix', 'githook'];
+
+                    // Adding s to the words and also ignoring them
+                    ignoredWords = _.concat(_.map(ignoredWords, (word) => `${word}s`));
 
                     let misspelledWords = _(res.output)
                         .split('\n')
                         .map((word) => _.lowerCase(word))
+                        // Remove words in the ignoredWords list
                         .remove((word) => _.indexOf(ignoredWords, word) === -1)
                         .value()
 
