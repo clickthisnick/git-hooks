@@ -37,12 +37,24 @@ module.exports = {
     },
 
     getPrefix: function(string) {
+        string = _.lowerCase(string);
         const prefix = _(constants.BRANCH_PREFIXES)
             .find((prefix) => {
                 return _.startsWith(string, prefix)
             })
 
         return prefix;
+    },
+
+    writeCommitMessage: function(message) {
+      return new Promise((resolve) => {
+          fs.writeFile('.git/COMMIT_EDITMSG', message, function (err,data) {
+              if (err) {
+                  return console.log(err);
+              }
+              resolve();
+          });
+      })
     },
 
     getCommitMessage: function() {

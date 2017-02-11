@@ -14,7 +14,7 @@ return util.getCommitMessage()
         let errorString = [];
 
         if (wordCount < minimumWordCount) {
-            errorString.push(`Commit Message: "${commitMessage}" Not Descriptive. Please use at least ${minimumWordCount} words`);
+            errorString.push(`Commit Message: "${commitMessage}" Not Descriptive. Please use at least ${minimumWordCount} words after prefix`);
         }
 
         if (errorString.length > 0) {

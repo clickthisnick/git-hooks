@@ -4,8 +4,7 @@ const
 
     // Libraries
     util = require('./../util.js'),
-    _ = require('lodash'),
-    fs = require('fs');
+    _ = require('lodash');
 
 return util.getCommitMessage()
   .then((commitMsg) => {
@@ -14,9 +13,5 @@ return util.getCommitMessage()
           .replace(/  +/g, ' ')
           .trim();
 
-      fs.writeFile('.git/COMMIT_EDITMSG', `${sanitizedCommitMsg}`, function (err,data) {
-          if (err) {
-              return console.log(err);
-          }
-      });
+      return util.writeCommitMessage(sanitizedCommitMsg);
   });
