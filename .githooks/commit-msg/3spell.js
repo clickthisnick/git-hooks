@@ -8,7 +8,6 @@ const
 
 return util.bash('which aspell')
     .then((aspell) => {
-        console.log(aspell);
         if (!_.isNil(aspell.error)) {
             console.log('Cannot check commit spelling unless you install aspell');
             console.log('To install use command: brew install aspell');
