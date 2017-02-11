@@ -9,7 +9,7 @@ else
     echo ${misspelled_words}
 
     # Words that we don't want to alert user are mistakes
-    ignored_words=(Bugfix bugfix)
+    ignored_words=()
 
     tps=" ${misspelled_words[*]} "                     # stringify the array
 
