@@ -4,9 +4,14 @@ if [ $? -ne 0 ]; then
     echo "Aspell not installed - unable to check spelling" >&2
     exit
 else
-    WORDS=$($ASPELL --mode=email --add-email-quote='#' list < "$1" | sort -u)
-    echo ${WORDS} 
+    SPELLING_MISTAKES=$($ASPELL --mode=email --add-email-quote='#' list < "$1" | sort -u)
+    IGNORE_MISTAKES=(SP1026 SP0995 SP0434)
+    for i in "${IGNORE_MISTAKES[@]}"; do
+             SPELLING_MISTAKES=(${SPELLING_MISTAKES[@]//*$i*})
+    done
+
+    echo ${SPELLING_MISTAKES}
 fi
-if [ -n "$WORDS" ]; then
-    printf "\e[1;33m  Possible spelling errors found in commit message:\n\e[0m\e[0;31m%s\n\e[0m\e[1;33m  Use git commit --amend to change the message.\e[0m\n\n" "$WORDS" >&2
+if [ -n "$SPELLING_MISTAKES" ]; then
+    printf "\e[1;33m  Possible spelling errors found in commit message:\n\e[0m\e[0;31m%s\n\e[0m\e[1;33m  Use git commit --amend to change the message.\e[0m\n\n" "$SPELLING_MISTAKES" >&2
 fi
