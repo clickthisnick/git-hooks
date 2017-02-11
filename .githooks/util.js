@@ -7,10 +7,10 @@ module.exports = {
     bash: function(command) {
         return new Promise((resolve) => {
             exec(command, (error, stdout) => {
-                if (error) {
-                    console.log(`Error: ${error}`);
-                }
-                resolve(stdout);
+                resolve({
+                    error: error,
+                    output: stdout
+                })
             });
 
         });
