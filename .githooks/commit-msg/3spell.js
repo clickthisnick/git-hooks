@@ -28,8 +28,7 @@ return util.getCommitMessage()
                         // Remove words in the ignoredWords list
                         .remove((word) => _.indexOf(ignoredWordList, word) === -1)
                         .value()
-                        .remove((element) => element === '')
-                        .value()
+                        .filter((word) => word !== '')
 
                     console.log(misspelledWords);
                     if (misspelledWords.length === 1 && misspelledWords === ['']) {
