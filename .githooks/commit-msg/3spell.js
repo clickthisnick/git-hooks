@@ -25,11 +25,11 @@ return util.getCommitMessage()
                     }
 
                     // Adding s to the words and also ignoring them
-                    const ignoredWordList = _.concat(constants.IGNORED_MISSPELLINGS, _.map(ignoredWords, (word) => `${word}s`)),
+                    const ignoredWordsWithS = _.map(constants.IGNORED_MISSPELLINGS, (word) => `${word}s`);
+                        ignoredWordList = _.concat(constants.IGNORED_MISSPELLINGS, ignoredWordsWithS);
                         misspelledWords = _(res.output)
                             .split('\n')
                             .map((word) => _.lowerCase(word))
-                            // Remove words in the ignoredWords list
                             .remove((word) => !_.includes(ignoredWordList, word))
                             .value();
 
