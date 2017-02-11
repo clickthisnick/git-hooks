@@ -9,7 +9,7 @@ module.exports = {
             exec(command, (error, stdout) => {
                 resolve({
                     error: error,
-                    output: stdout
+                    output: _.trim(stdout, '\n')
                 })
             });
 
