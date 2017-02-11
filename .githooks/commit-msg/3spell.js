@@ -23,8 +23,7 @@ return util.getCommitMessage()
                     const ignoredWords = []
                     let misspelledWords = _(res)
                         .split('\n')
-                        .map()
-                        .toLowerCase()
+                        .map((word) => _.toLowerCase(word))
 
                     console.log(misspelledWords);
                     // var fruits = ['Apple', 'Banana', 'Orange', 'Celery'];
