@@ -23,7 +23,7 @@ return util.getCommitMessage()
                     const ignoredWords = []
                     let misspelledWords = _(res)
                         .split('\n')
-                        .map((word) => _.toLowerCase(word))
+                        .map((word) => _.lowerCase(word))
                         .value()
 
                     console.log(misspelledWords);
