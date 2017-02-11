@@ -25,10 +25,11 @@ return util.getCommitMessage()
                     let misspelledWords = _(res.output)
                         .split('\n')
                         .map((word) => _.lowerCase(word))
-                        .remove((word) => _.includes(ignoredWordList, word))
-                        .value();
+                        // Remove words in the ignoredWords list
+                        .remove((word) => _.indexOf(ignoredWordList, word) === -1)
+                        .value()
+                        .filter((word) => word !== '')
 
-                    console.log(misspelledWords);
                     if (misspelledWords.length === 0) {
                         return;
                     }
