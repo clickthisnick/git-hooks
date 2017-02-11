@@ -2,7 +2,7 @@
 
 const util = require('./../util.js'),
   _ = require('lodash'),
-  requiredBranchPrefixs = ['chore', 'hotfix', 'bugfix', 'feat'],
+  constants = require('./../const.js'),
   ignoreBranches = ['master', 'latest'];
 
 return util.getBranchName()
@@ -18,7 +18,7 @@ return util.getBranchName()
           console.log('\n\n');
           console.log('\t\x1b[103m', 'Branch name missing required prefix' ,'\x1b[0m');
           console.log('\t\x1b[103m', 'Rename branch with one of the following commands:' ,'\x1b[0m');
-          _.forEach(requiredBranchPrefixs, (prefix) => {
+          _.forEach(constants.BRANCH_PREFIXES, (prefix) => {
                 console.log(`\tgit branch -m ${branchName} ${prefix}-${branchName}`)
           })
           console.log('\t\x1b[31m', 'Aborting Push.' ,'\x1b[0m');
