@@ -27,7 +27,10 @@ return util.getCommitMessage()
                         .map((word) => _.lowerCase(word))
                         .remove((word) => _.includes(ignoredWordList, word))
                         .value()
-                        .filter((word) => word !== '')
+                        .filter((word) => {
+                            console.log(word);
+                            word !== ''
+                        })
 
                     console.log(misspelledWords);
                     if (misspelledWords.length === 0) {
