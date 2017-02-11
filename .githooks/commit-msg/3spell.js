@@ -29,7 +29,7 @@ return util.getCommitMessage()
                         .remove((word) => _.indexOf(ignoredWordList, word) === -1)
                         .value()
 
-                    console.log(misspelledWords);
+                    console.log(misspelledWords[0]);
                     if (misspelledWords.length === 0 || misspelledWords === ['']) {
                         return;
                     }
