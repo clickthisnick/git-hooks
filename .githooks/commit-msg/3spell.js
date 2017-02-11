@@ -14,7 +14,7 @@ return util.bash('which aspell')
             console.log('\tTo install use command: brew install aspell');
             console.log('\n');
         } else {
-            return util.bash(`${aspell.outut} --mode=email --add-email-quote='#' list < "$1" | sort -u`)
+            return util.bash(`${aspell.output} --mode=email --add-email-quote='#' list < "$1" | sort -u`)
                 .then((misspelledWords) => {
                     console.log(misspelledWords);
                 })
