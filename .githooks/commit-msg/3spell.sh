@@ -6,9 +6,10 @@ if [ $? -ne 0 ]; then
 else
     # Words found that are thought to be mistakes
     SPELLING_MISTAKES=$($ASPELL --mode=email --add-email-quote='#' list < "$1" | sort -u)
-
+    echo ${SPELLING_MISTAKES}
+    
     # Words that we don't want to alert user are mistakes
-    IGNORE_MISTAKES=(Bugfix bugfix) 
+    IGNORE_MISTAKES=(Bugfix bugfix)
 
     # Filtering out the ignored mistakes
     for i in "${IGNORE_MISTAKES[@]}"; do
