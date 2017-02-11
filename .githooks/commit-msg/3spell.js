@@ -22,6 +22,7 @@ return util.getCommitMessage()
                         // Adding s to the words and also ignoring them
                         ignoredWordList = _.concat(ignoredWords, _.map(ignoredWords, (word) => `${word}s`));
 
+                    console.log(res.output);
                     let misspelledWords = _(res.output)
                         .split('\n')
                         .map((word) => _.lowerCase(word))
