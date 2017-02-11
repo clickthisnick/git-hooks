@@ -9,10 +9,10 @@ const
 return util.bash('which aspell')
     .then((aspell) => {
         if (!_.isNil(aspell.error)) {
-            console.log('\n\n');
+            console.log('\n');
             console.log('\t\x1b[103m', 'Cannot check commit spelling unless you install aspell' ,'\x1b[0m');
-            console.log('To install use command: brew install aspell');
-            console.log('\n\n');
+            console.log('\tTo install use command: brew install aspell');
+            console.log('\n');
         }
     })
 // // ASPELL=$(which aspell)
