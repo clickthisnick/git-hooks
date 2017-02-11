@@ -60,7 +60,9 @@ module.exports = {
     getCommitMessage: function() {
       return new Promise((resolve) => {
           fs.readFile('.git/COMMIT_EDITMSG', 'utf8', function(err, contents) {
-              const commitMessage = _.trim(contents, ['\n']);
+             const commitMessage = _(contents)
+                .split('\n')
+                .head()
 
               resolve(commitMessage);
           });
