@@ -18,20 +18,22 @@ return util.getCommitMessage()
         } else {
             return util.bash(`${aspell.output} list < .git/COMMIT_EDITMSG | sort -u`)
                 .then((res) => {
+                    // res will be [''] if there are no misspellings
+                    if (resp.output === ['']) {
+                        console.log('farts');
+                    }
+
                     let ignoredWords = ['bugfix', 'githook'],
                         // Adding s to the words and also ignoring them
                         ignoredWordList = _.concat(ignoredWords, _.map(ignoredWords, (word) => `${word}s`));
 
-                    console.log(res.output);
                     let misspelledWords = _(res.output)
                         .split('\n')
                         .map((word) => _.lowerCase(word))
-                        .value();
                         // Remove words in the ignoredWords list
-                        //.remove((word) => !_.includes(ignoredWordList, word))
-                        // .value();
+                        .remove((word) => !_.includes(ignoredWordList, word))
+                        .value();
 
-                    console.log(misspelledWords);
                     if (misspelledWords.length === 0) {
                         return;
                     }
