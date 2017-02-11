@@ -10,7 +10,7 @@ else
     # Words that we don't want to alert user are mistakes
     IGNORE_MISTAKES=(Bugfix bugfix)
 
-    #
+    # Filtering out the ignored mistakes
     for i in "${IGNORE_MISTAKES[@]}"; do
         SPELLING_MISTAKES=(${SPELLING_MISTAKES[@]//*$i*})
     done
