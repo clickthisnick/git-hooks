@@ -20,16 +20,18 @@ return util.getCommitMessage()
         } else {
             return util.bash(`${aspell.output} list < .git/COMMIT_EDITMSG | sort -u`)
                 .then((res) => {
-                    const ignoredWords = []
+                    const ignoredWords = ['bugfix'];
+
                     let misspelledWords = _(res.output)
                         .split('\n')
                         .map((word) => _.lowerCase(word))
+                        .remove((word) => _.indexOf(ignoredWords, word) !== -1)
                         .value()
 
                     console.log(misspelledWords);
                     // var fruits = ['Apple', 'Banana', 'Orange', 'Celery'];
                     // Remove these w
-                    //_.pull(fruits, 'Apple', 'Banana', 'Orange'); // ['Celery']
+                    _.pull(fruits, 'Apple', 'Banana', 'Orange'); // ['Celery']
                 })
         }
     })
