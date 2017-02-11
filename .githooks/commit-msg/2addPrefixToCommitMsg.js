@@ -29,7 +29,7 @@ return util.getBranchName()
     }
 
     // Prepend branch prefix to commit and make sure the commitMsg starts with a capital letter git
-    if (!_.startsWith(commitMsg, branchPrefix)) {
+  //  if (!_.startsWith(commitMsg, branchPrefix)) {
         return util.writeCommitMessage(`${branchPrefix} - ${_.upperFirst(commitMsg)}`);
-    }
+//    }
   });
