@@ -4,10 +4,15 @@ if [ $? -ne 0 ]; then
     echo "Aspell not installed - unable to check spelling" >&2
     exit
 else
+    # Words found that are thought to be mistakes
     SPELLING_MISTAKES=$($ASPELL --mode=email --add-email-quote='#' list < "$1" | sort -u)
-    IGNORE_MISTAKES=(SP1026 SP0995 SP0434)
+
+    # Words that we don't want to alert user are mistakes
+    IGNORE_MISTAKES=(Bugfix bugfix)
+
+    #
     for i in "${IGNORE_MISTAKES[@]}"; do
-             SPELLING_MISTAKES=(${SPELLING_MISTAKES[@]//*$i*})
+        SPELLING_MISTAKES=(${SPELLING_MISTAKES[@]//*$i*})
     done
 
     echo ${SPELLING_MISTAKES}
