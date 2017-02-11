@@ -19,11 +19,12 @@ return util.getBranchName()
     const isBranchPrefixed = util.isBranchNamePrefixed(branchName),
         branchPrefix = util.getPrefix(branchName);
 
-    // If branch is not prefixed then don't do anything because we don't know what prefix it should be
+    // If branch is not prefixed don't add any prefix since we don't know what it would be
     if (!isBranchPrefixed) {
-        return;
+        // Make sure the commit message starts with a capital letter
+        return util.writeCommitMessage(_.upperFirst(commitMsg));
     }
 
-    // Prepend branch prefix to commit
-    return util.writeCommitMessage(`${_.upperFirst(branchPrefix)} - ${commitMsg}`);
+    // Prepend branch prefix to commit and make sure the commitMsg starts with a capital letter
+    return util.writeCommitMessage(`${_.upperFirst(branchPrefix)} - ${_.upperFirst(commitMsg)}`);
   });
