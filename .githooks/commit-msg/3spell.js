@@ -13,6 +13,11 @@ return util.bash('which aspell')
             console.log('\t\x1b[103m', 'Cannot check commit spelling unless you install aspell' ,'\x1b[0m');
             console.log('\tTo install use command: brew install aspell');
             console.log('\n');
+        } else {
+            return util.bash(`${aspell.outut} --mode=email --add-email-quote='#' list < "$1" | sort -u`)
+                .then((misspelledWords) => {
+                    console.log(misspelledWords);
+                })
         }
     })
 // // ASPELL=$(which aspell)
