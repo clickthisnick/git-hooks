@@ -20,8 +20,7 @@ return util.getCommitMessage()
                 .then((res) => {
                     // res will be [''] if there are no misspellings
                     if (_(res.output)
-                        .filter((word) => word === '')
-                        .value()
+                        .remove((word) => word === '')
                         .length() === 0) {
                         console.log('farts');
                     }
