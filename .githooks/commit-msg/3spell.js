@@ -19,7 +19,7 @@ return util.getCommitMessage()
             return util.bash(`${aspell.output} list < .git/COMMIT_EDITMSG | sort -u`)
                 .then((res) => {
                     // res will be [''] if there are no misspellings
-                    if (resp.output === ['']) {
+                    if (res.output === ['']) {
                         console.log('farts');
                     }
 
