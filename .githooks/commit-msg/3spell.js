@@ -21,7 +21,7 @@ return util.getCommitMessage()
             return util.bash(`${aspell.output} list < .git/COMMIT_EDITMSG | sort -u`)
                 .then((res) => {
                     const ignoredWords = []
-                    let misspelledWords = _(res)
+                    let misspelledWords = _(res.output)
                         .split('\n')
                         .map((word) => _.lowerCase(word))
 
