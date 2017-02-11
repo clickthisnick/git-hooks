@@ -6,7 +6,10 @@ const
     util = require('./../util.js'),
     _ = require('lodash'),
 
+    // The amount of words needed including the prefix
     minimumWordCount = 5,
+
+    // Word count for the preappended prefix to every commit message
     prefixWords = 2;
 
 return util.getCommitMessage()
