@@ -1,9 +1,6 @@
 #!/usr/bin/env node
 
-const
-
-    // Libraries
-    util = require('./../util.js'),
+const util = require('./../util.js'),
     _ = require('lodash');
 
 let commitMsg;

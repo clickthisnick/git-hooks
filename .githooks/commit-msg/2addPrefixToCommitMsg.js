@@ -1,14 +1,11 @@
 #!/usr/bin/env node
 
-const
-
-    // Libraries
-    util = require('./../util.js'),
+const util = require('./../util.js'),
     _ = require('lodash'),
     constants = require('./../const.js'),
     fs = require('fs');
 
-  let branchName;
+let branchName;
 
 return util.getBranchName()
   .then((res) => branchName = res)
