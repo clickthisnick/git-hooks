@@ -25,6 +25,7 @@ return util.getCommitMessage()
                     let misspelledWords = _(res.output)
                         .split('\n')
                         .map((word) => _.lowerCase(word))
+                        .value();
                         // Remove words in the ignoredWords list
                         //.remove((word) => !_.includes(ignoredWordList, word))
                         // .value();
