@@ -29,6 +29,7 @@ return util.getCommitMessage()
                         .value()
                         .filter((word) => word !== '')
 
+                    console.log(misspelledWords);
                     if (misspelledWords.length === 0) {
                         return;
                     }
