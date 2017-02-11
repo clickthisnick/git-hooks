@@ -17,7 +17,7 @@ return util.getCommitMessage()
             console.log('brew install aspell');
             console.log('\n');
         } else {
-            return util.bash(`${aspell.output} list < .git/COMMIT_EDITMSG | sort -u`)
+            return util.bash(`${aspell.output} list < ${constants.COMMIT_MSG_PATH} | sort -u`)
                 .then((res) => {
                     // The aspell command will return '' if there are no misspellings
                     if (res.output === '') {
@@ -41,7 +41,7 @@ return util.getCommitMessage()
                     console.log('\t\x1b[103m', 'The following words are possibly misspelled' ,'\x1b[0m');
                     _.forEach(misspelledWords, (word) => console.log(`\t${word}`))
                     console.log('\t\x1b[103m', 'To fix use command:' ,'\x1b[0m');
-                    console.log('git commit --amend');
+                    console.log('\tgit commit --amend');
                     console.log('\n');
                 })
         }
