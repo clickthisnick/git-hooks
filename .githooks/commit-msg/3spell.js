@@ -20,8 +20,8 @@ return util.getCommitMessage()
                     let ignoredWords = ['bugfix', 'githook'];
 
                     // Adding s to the words and also ignoring them
-                    ignoredWords = _.concat(_.map(ignoredWords, (word) => `${word}s`));
-
+                    ignoredWords = _.concat(ignoredWords, _.map(ignoredWords, (word) => `${word}s`));
+                    console.log(ignoredWords);
                     let misspelledWords = _(res.output)
                         .split('\n')
                         .map((word) => _.lowerCase(word))
