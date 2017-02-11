@@ -19,7 +19,7 @@ return util.getCommitMessage()
             return util.bash(`${aspell.output} list < .git/COMMIT_EDITMSG | sort -u`)
                 .then((res) => {
                     console.log(res);
-                    if (res === '') {
+                    if (res.output === '') {
                         console.log('farts');
                     }
 
