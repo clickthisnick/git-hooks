@@ -12,11 +12,17 @@ return util.getCommitMessage()
         if (!_.isNil(aspell.error)) {
             console.log('\n');
             console.log('\t\x1b[103m', 'Cannot check commit spelling unless you install aspell' ,'\x1b[0m');
-            console.log('\tTo install use command: brew install aspell');
+            console.log('\t\x1b[103m', 'To install use command:' ,'\x1b[0m');
+            console.log('brew install aspell');
             console.log('\n');
         } else {
             return util.bash(`${aspell.output} list < .git/COMMIT_EDITMSG | sort -u`)
                 .then((res) => {
+                    // The aspell command will return '' if there are no misspellings
+                    if (res.output === '') {
+                        return
+                    }
+
                     let ignoredWords = ['bugfix', 'githook'],
                         // Adding s to the words and also ignoring them
                         ignoredWordList = _.concat(ignoredWords, _.map(ignoredWords, (word) => `${word}s`));
@@ -25,8 +31,8 @@ return util.getCommitMessage()
                         .split('\n')
                         .map((word) => _.lowerCase(word))
                         // Remove words in the ignoredWords list
-                        .remove((word) => _.indexOf(ignoredWordList, word) === -1)
-                        .value()
+                        .remove((word) => !_.includes(ignoredWordList, word))
+                        .value();
 
                     if (misspelledWords.length === 0) {
                         return;
@@ -35,7 +41,8 @@ return util.getCommitMessage()
                     console.log('\n');
                     console.log('\t\x1b[103m', 'The following words are possibly misspelled' ,'\x1b[0m');
                     _.forEach(misspelledWords, (word) => console.log(`\t${word}`))
-                    console.log('\t\x1b[103m', 'To fix use command: git commit --amend' ,'\x1b[0m');
+                    console.log('\t\x1b[103m', 'To fix use command:' ,'\x1b[0m');
+                    console.log('git commit --amend');
                     console.log('\n');
                 })
         }
