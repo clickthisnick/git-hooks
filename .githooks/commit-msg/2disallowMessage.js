@@ -23,10 +23,10 @@ return util.getCommitMessage()
 
         if (errorString.length > 0) {
             // http://misc.flogisoft.com/bash/tip_colors_and_formatting
-            console.log('\n\n');
+            console.log('\n');
             console.log('\t\x1b[103m', _.join(errorString, '\n') ,'\x1b[0m');
             console.log('\t\x1b[31m', 'Aborting Commit.' ,'\x1b[0m');
-            console.log('\n\n');
+            console.log('\n');
             process.exit(1);
         }
     });
