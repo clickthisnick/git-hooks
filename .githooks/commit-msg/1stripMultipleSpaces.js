@@ -4,20 +4,14 @@ const
 
     // Libraries
     util = require('./../util.js'),
-    _ = require('lodash'),
-    fs = require('fs');
+    _ = require('lodash');
 
 return util.getCommitMessage()
-  .then((commitMessage) => {
-      // Remove multiple spaces
-      commitMessage = commitMessage.replace(/  +/g, ' ');
+  .then((commitMsg) => {
+      // Remove multiple spaces and spaces surrounding message
+      const sanitizedCommitMsg = _(commitMsg)
+          .replace(/  +/g, ' ')
+          .trim();
 
-      // Trim spaces before and after commit message
-      commitMessage = _.trim(commitMessage);
-
-      fs.writeFile('.git/COMMIT_EDITMSG', `${commitMessage}`, function (err,data) {
-          if (err) {
-              return console.log(err);
-          }
-      });
+      return util.writeCommitMessage(sanitizedCommitMsg);
   });

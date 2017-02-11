@@ -6,7 +6,11 @@ const
     util = require('./../util.js'),
     _ = require('lodash'),
 
-    minimumWordCount = 3;
+    // The amount of words needed including the prefix
+    minimumWordCount = 5,
+
+    // Word count for the preappended prefix to every commit message
+    prefixWords = 2;
 
 return util.getCommitMessage()
     .then((commitMessage) => {
@@ -14,7 +18,7 @@ return util.getCommitMessage()
         let errorString = [];
 
         if (wordCount < minimumWordCount) {
-            errorString.push(`Commit Message: "${commitMessage}" Not Descriptive. Please use at least ${minimumWordCount} words`);
+            errorString.push(`Commit Message: "${commitMessage}" Not Descriptive. Please use at least ${minimumWordCount - prefixWords} words after prefix`);
         }
 
         if (errorString.length > 0) {
