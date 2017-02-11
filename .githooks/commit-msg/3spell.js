@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const util = require('./../util.js'),
+    constants = require('./../const.js'),
     _ = require('lodash');
 
 let commitMsg;
@@ -23,16 +24,14 @@ return util.getCommitMessage()
                         return
                     }
 
-                    let ignoredWords = ['bugfix', 'githook'],
-                        // Adding s to the words and also ignoring them
-                        ignoredWordList = _.concat(ignoredWords, _.map(ignoredWords, (word) => `${word}s`));
-
-                    let misspelledWords = _(res.output)
-                        .split('\n')
-                        .map((word) => _.lowerCase(word))
-                        // Remove words in the ignoredWords list
-                        .remove((word) => !_.includes(ignoredWordList, word))
-                        .value();
+                    // Adding s to the words and also ignoring them
+                    const ignoredWordList = _.concat(constants.IGNORED_MISSPELLINGS, _.map(ignoredWords, (word) => `${word}s`)),
+                        misspelledWords = _(res.output)
+                            .split('\n')
+                            .map((word) => _.lowerCase(word))
+                            // Remove words in the ignoredWords list
+                            .remove((word) => !_.includes(ignoredWordList, word))
+                            .value();
 
                     if (misspelledWords.length === 0) {
                         return;
