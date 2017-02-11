@@ -18,9 +18,9 @@ return util.getCommitMessage()
         } else {
             return util.bash(`${aspell.output} list < .git/COMMIT_EDITMSG | sort -u`)
                 .then((res) => {
-                    console.log(res);
+                    // The aspell command will return '' if there are no misspellings
                     if (res.output === '') {
-                        console.log('farts');
+                        return
                     }
 
                     let ignoredWords = ['bugfix', 'githook'],
