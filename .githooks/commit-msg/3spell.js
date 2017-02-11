@@ -17,7 +17,7 @@ return util.getCommitMessage()
         } else {
             return util.bash(`${aspell.output} list < .git/COMMIT_EDITMSG | sort -u`)
                 .then((res) => {
-                    const ignoredWords = ['bugfix', 'githook'];
+                    const ignoredWords = ['bugfix', 'githooks'];
 
                     let misspelledWords = _(res.output)
                         .split('\n')
