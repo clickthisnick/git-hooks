@@ -21,10 +21,13 @@ return util.getBranchName()
 
     // If branch is not prefixed don't add any prefix since we don't know what it would be
     if (!isBranchPrefixed) {
+
         // Make sure the commit message starts with a capital letter
-        return util.writeCommitMessage(_.upperFirst(commitMsg));
+        if (commitMsg !== _.upperFirst(commitMsg)) {
+            return util.writeCommitMessage(_.upperFirst(commitMsg));
+        }
     }
 
-    // Prepend branch prefix to commit and make sure the commitMsg starts with a capital lettergit 
+    // Prepend branch prefix to commit and make sure the commitMsg starts with a capital lettergit
     return util.writeCommitMessage(`${_.upperFirst(branchPrefix)} - ${_.upperFirst(commitMsg)}`);
   });
