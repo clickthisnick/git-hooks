@@ -7,10 +7,10 @@ module.exports = {
     bash: function(command) {
         return new Promise((resolve) => {
             exec(command, (error, stdout) => {
-                if (error) {
-                    console.log(`Error: ${error}`);
-                }
-                resolve(stdout);
+                resolve({
+                    error: error,
+                    output: _.trim(stdout, '\n')
+                })
             });
 
         });
@@ -18,8 +18,8 @@ module.exports = {
 
     getBranchName: function() {
         return this.bash('git symbolic-ref -q HEAD')
-          .then((refHead) => {
-              branchName = _(refHead)
+          .then((result) => {
+              branchName = _(result.output)
                 .split('/')
                 .last()
                 .trim(['\n'])
@@ -60,7 +60,9 @@ module.exports = {
     getCommitMessage: function() {
       return new Promise((resolve) => {
           fs.readFile('.git/COMMIT_EDITMSG', 'utf8', function(err, contents) {
-              const commitMessage = _.trim(contents, ['\n']);
+             const commitMessage = _(contents)
+                .split('\n')
+                .head()
 
               resolve(commitMessage);
           });
