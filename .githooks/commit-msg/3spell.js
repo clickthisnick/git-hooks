@@ -10,6 +10,8 @@ let commitMsg;
 
 return util.getCommitMessage()
     .then((res) => commitMsg = res)
+    .then((resp) => util.bash('pwd'))
+    .then(() => console.log(resp))
     .then(() => util.bash('which aspell'))
     .then((aspell) => {
         if (!_.isNil(aspell.error)) {
