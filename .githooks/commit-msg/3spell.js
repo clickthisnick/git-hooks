@@ -18,6 +18,7 @@ return util.getCommitMessage()
             console.log('\tTo install use command: brew install aspell');
             console.log('\n');
         } else {
+            console.log(aspell.output)
             return util.bash(`${aspell.output} --mode=email --add-email-quote='#' list < ${commitMsg} | sort -u`)
                 .then((misspelledWords) => {
                     console.log(misspelledWords);
