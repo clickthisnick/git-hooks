@@ -11,13 +11,14 @@ else
     # Words that we don't want to alert user are mistakes
     ignored_words=(Bugfix bugfix)
 
-    # Filtering out the ignored mistakes
-    for i in "${ignored_words[@]}"; do
-        misspelled_words=(${misspelled_words[@]//*$i*})
-    done
+    tps=" ${misspelled_words[*]} "                     # stringify the array
 
-    echo ${misspelled_words}
+    for item in ${ignored_words[@]}; do
+      tps=${tps/ ${item} / }                # replace item
+    done
+    misspelled_words=( $tps )                          # replace the array
 fi
+
 if [ -n "$misspelled_words" ]; then
     printf "\e[1;33m  Possible spelling errors found in commit message:\n\e[0m\e[0;31m%s\n\e[0m\e[1;33m  Use git commit --amend to change the message.\e[0m\n\n" "$misspelled_words" >&2
 fi
