@@ -24,6 +24,7 @@ return util.getCommitMessage()
                     let misspelledWords = _(res)
                         .split('\n')
                         .map((word) => _.toLowerCase(word))
+                        .value()
 
                     console.log(misspelledWords);
                     // var fruits = ['Apple', 'Banana', 'Orange', 'Celery'];
