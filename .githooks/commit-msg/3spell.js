@@ -18,7 +18,7 @@ return util.getCommitMessage()
         } else {
             return util.bash(`${aspell.output} list < .git/COMMIT_EDITMSG | sort -u`)
                 .then((res) => {
-                    let ignoredWords = ['', 'bugfix', 'githook'],
+                    let ignoredWords = ['bugfix', 'githook'],
                         // Adding s to the words and also ignoring them
                         ignoredWordList = _.concat(ignoredWords, _.map(ignoredWords, (word) => `${word}s`));
 
